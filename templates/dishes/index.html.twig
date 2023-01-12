@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{# {% block title %}{% endblock %} #}
+
+{% block body %}
+
+<div class="container">
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Order No.</td>
+            <td>Name</td>
+            <td>Description</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for dish in getDishes %}
+            <tr>
+                <td>{{dish.id}}</td>
+                <td>{{dish.name}}</td>
+                <td>{{dish.description}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</div>
+{% endblock %}
