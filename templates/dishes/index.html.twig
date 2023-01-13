@@ -4,6 +4,14 @@
 
 {% block body %}
 
+{% for messages in app.flashes('success') %}
+
+    <div class="alert alert-success">
+        <h3>{{ messages }}</h3>
+    </div>
+
+{% endfor %}
+
 <div class="container">
 
 <table class="table table-striped">
@@ -12,6 +20,9 @@
             <td>Order No.</td>
             <td>Name</td>
             <td>Description</td>
+             <td>Price</td>
+            <td>Delete</td>
+            <td> <a href="{{path('dish.create')}}">Create</a></td>
         </tr>
     </thead>
     <tbody>
@@ -20,6 +31,9 @@
                 <td>{{dish.id}}</td>
                 <td>{{dish.name}}</td>
                 <td>{{dish.description}}</td>
+                <td>{{dish.price}}</td>
+                <td> <a href="{{path('dish.remove', {id: dish.id})}}">x</a></td>
+                <td></td>
             </tr>
         {% endfor %}
     </tbody>
