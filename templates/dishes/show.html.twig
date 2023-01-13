@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{# {% block title %}{% endblock %} #}
+
+{% block body %}
+
+{% for messages in app.flashes('success') %}
+
+    <div class="alert alert-success">
+        <h3>{{ messages }}</h3>
+    </div>
+
+{% endfor %}
+
+<div class="container">
+
+<h1>{{dish.name}}</h1>
+
+<img src="{{asset('images/' ~ dish.image)}}" />
+
+</div>
+{% endblock %}

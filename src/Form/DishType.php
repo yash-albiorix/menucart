@@ -6,6 +6,7 @@ use App\Entity\Dish;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DishType extends AbstractType
@@ -14,6 +15,7 @@ class DishType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('attachment', FileType::class, ['mapped' => false])
             ->add('description')
             ->add('price')
             ->add('save', SubmitType::class)

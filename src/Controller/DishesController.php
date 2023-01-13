@@ -41,6 +41,20 @@ class DishesController extends AbstractController
         if($form->isSubmitted()){
             //Entity Manager 
             $em = $this->getDoctrine()->getManager();
+
+            $image = $request->files->get('dish')['attachment'];
+
+            if($image){
+                $dateiname = md5(uniqid()) . '.' . $image->guessClientExtension();
+            }
+
+            $image->move(
+                $this->getParameter('images_folder'),
+                $dateiname
+            );
+
+            $dish->setImage($dateiname);
+
             $em->persist($dish);
             $em->flush();
 
@@ -67,5 +81,15 @@ class DishesController extends AbstractController
 
         return $this->redirect($this->generateUrl('dish.edit'));
 
+    }
+
+    /**
+     * @Route("/show/{id}", name="show")
+     */
+    public function show(Dish $dish){
+        //Response
+        return $this->render('dishes/show.html.twig', [
+            'dish' => $dish
+        ]);
     }
 }
