@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% set sum = 0 %}
+
+<br>
+<div class="container">
+    <h2>Orders</h2>
+    <br>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Order No.</td>
+                <td>Name</td>
+                <td>Price</td>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}<td>Status</td>{% endif %}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}<td>Delete</td>{% endif %}
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for order in orders %}
+                {% set sum = sum + order.price %}
+
+                <tr>
+                    <td>{{order.orderno}}</td>
+                    <td>{{order.name}}</td>
+                    <td>{{order.price}}</td>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{order.status}}
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="{{path('status',{id: order.id, status:'active'})}}">Active</a>
+                                <a class="dropdown-item" href="{{path('status',{id: order.id, status:'inactive'})}}">Inactive</a>
+                                <a class="dropdown-item" href="{{path('status',{id: order.id, status:'archive'})}}">Archive</a>
+                            </div>
+                        </div>
+                    </td>
+                 
+                    <td>
+                    {% if order.status == 'active' %}
+                    <a class="btn btn-outline-danger btn-sm" href="{{path('removeOrder',{id: order.id})}}" role="button">Delete</a>
+                    {% endif %}
+                </td>
+                 {% endif %}
+                </tr>
+            {% endfor %}
+            <td></td><td></td>
+            <td>{{sum}} INR</td>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}<td></td><td></td>{% endif %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}
