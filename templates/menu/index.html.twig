@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+<!-- Playlist section -->
+	<section class="playlist-section spad">
+		<div class="container-fluid">
+			<div class="section-title">
+				<h2>Menu</h2>
+			</div>
+			<div class="container">
+				<ul class="playlist-filter controls">
+					<li class="control" data-filter=".drink">drink</li>
+					<li class="control" data-filter=".appetiser">appetiser</li>
+					<li class="control" data-filter=".main_dishes">Main Dishes</li>
+					<li class="control" data-filter=".desserts">desserts</li>
+					<li class="control" data-filter="all">All Dishes</li>
+				</ul>
+			</div>                                              
+			<div class="clearfix"></div>
+			<div class="row playlist-area">
+
+            {% for dish in dishes %}
+
+				<div class="mix col-lg-3 col-md-4 col-sm-6 {{dish.category}}">
+					<div class="playlist-item">
+						<img src="{{asset('images/' ~ dish.image)}}" alt="">
+						<h5>{{dish.description}} - INR {{dish.price}}</h5>
+                        <p>Best Nr. {{dish.id}}</p>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<!-- Playlist section end -->
+
+{% endblock %}
