@@ -68,15 +68,15 @@
 				<ul class="playlist-filter controls">
 					<li class="control" data-filter="all">All Dishes</li>
 					{% for category in categories %}
-					<li class="control" data-filter=".{{category.name |replace({' ': ''}) }}">{{category.name}}</li>
+						<li class="control" data-filter=".{{category.name |replace({' ': ''}) }}">{{category.name}}</li>
 					{% endfor %}
 				</ul>
-			</div>                                              
+			</div>
 			<div class="clearfix"></div>
 			<div class="row playlist-area">
 
             {% for dish in dishes %}
-				<div class="mix col-lg-3 col-md-4 col-sm-6 {{dish.category}}">
+				<div class="mix col-lg-3 col-md-4 col-sm-6 {{dish.category  |replace({' ': ''}) }}">
 					<div class="playlist-item">
 						<img src="{{asset('images/' ~ dish.image)}}" alt="">
 						<h5>{{dish.name}} - INR {{dish.price}}</h5>
