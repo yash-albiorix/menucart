@@ -1,0 +1,33 @@
+	{% extends 'base.html.twig' %}
+
+    {% block body %}
+
+    <!-- Player section -->
+	<section class="player-section set-bg" data-setbg="img/player-bg.jpg">
+		<div class="player-box">
+			<div class="tarck-thumb-warp">
+				{# <div class="tarck-thumb">
+					<img src="img/wave-thumb.jpg" alt="">
+				</div> #}
+			</div>
+			<div class="wave-player-warp">
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="wave-player-info">
+							<h2>{{user.username}}</h2>
+							{# <p>One Night in Ibiza</p> #}
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="songs-links">
+							<a class="btn btn-danger btn-sm" href="{{ path('app_logout') }}" role="button">Logout</a>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Player section end -->
+
+    {% endblock %}

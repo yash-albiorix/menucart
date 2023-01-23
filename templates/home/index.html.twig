@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
-
 {% block body %}
 
 {% for message in app.flashes('Order') %}
@@ -21,7 +19,9 @@
 								<h2><span>{{dish1.name}}</span>!</h2>
 								<p>{{dish1.description}} - Price : {{dish1.price}}!</p>
 								<a href="{{path('menu')}}" class="site-btn">Menu</a>
+								{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 								<a href="{{path('addorder', {id:dish1.id})}}" class="site-btn sb-c2">Order</a>
+								{% endif %}
 							</div>
 						</div>
 						<div class="col-lg-6">
@@ -40,7 +40,9 @@
 								<h2><span>{{dish2.name}}</span>!</h2>
 								<p>{{dish2.description}} - Price : {{dish2.price}}!</p>
 								<a href="{{path('menu')}}" class="site-btn">Menu</a>
+								{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 								<a href="{{path('addorder', {id:dish2.id})}}" class="site-btn sb-c2">Order</a>
+								{% endif %}
 							</div>
 						</div>
 						<div class="col-lg-6">
@@ -80,7 +82,9 @@
 						<img src="{{asset('images/' ~ dish.image)}}" alt="">
 						<h5>{{dish.description}} - INR {{dish.price}}</h5>
                         <p>Best Nr. {{dish.id}}</p>
+						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <a class="btn btn-outline-danger btn-sm" href="{{ path('addorder', {id: dish.id}) }}" role="button">Order</a>
+						{% endif %}
 					</div>
 				</div>
 				{% endfor %}

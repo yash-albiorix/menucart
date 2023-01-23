@@ -45,8 +45,9 @@
 				{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
 					<a href="{{ path('app_login') }}" class="register">Login</a>
 				{% endif %}
+				
 				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-					<a href="{{ path('app_logout') }}" class="register">Logout</a>
+					<a href="{{ path('profile') }}" class="register">Profile</a>
 				{% endif %}
 			</div> 
 		</div>

@@ -20,7 +20,7 @@
 					<li class="control" data-filter="all">All Dishes</li>
 
 					{% for category in categories %}
-					<li class="control" data-filter=".{{category.name}}">{{category.name}}</li>
+					<li class="control" data-filter=".{{category.name |replace({' ': ''}) }}">{{category.name}}</li>
 					{% endfor %}
 				</ul>
 			</div>                                              
@@ -28,12 +28,14 @@
 			<div class="row playlist-area">
 
             {% for dish in dishes %}
-				<div class="mix col-lg-3 col-md-4 col-sm-6 {{dish.category}}">
+				<div class="mix col-lg-3 col-md-4 col-sm-6 {{dish.category |replace({' ': ''}) }}">
 					<div class="playlist-item">
 						<img src="{{asset('images/' ~ dish.image)}}" alt="">
 						<h5>{{dish.description}} - INR {{dish.price}}</h5>
                         <p>Best Nr. {{dish.id}}</p>
+						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <a class="btn btn-outline-danger btn-sm" href="{{ path('addorder', {id: dish.id}) }}" role="button">Order</a>
+						{% endif %}
 					</div>
 				</div>
 				{% endfor %}
