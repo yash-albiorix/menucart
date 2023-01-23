@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{# {% block title %}{% endblock %} #}
+
+{% block body %}
+
+{% for messages in app.flashes('success') %}
+
+    <div class="alert alert-success">
+        <h3>{{ messages }}</h3>
+    </div>
+
+{% endfor %}
+
+<div class="container">
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Action</td>
+            <td> <a href="{{path('category.create')}}">Create</a></td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{category.id}}</td>
+                <td>{{category.name}}</td>
+                <td> <a href="{{path('category.update', {id: category.id})}}">Edit</a> |  <a href="{{path('category.remove', {id: category.id})}}">Delete</a></td>
+                <td></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</div>
+{% endblock %}

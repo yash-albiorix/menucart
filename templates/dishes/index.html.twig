@@ -22,7 +22,7 @@
             <td>Description</td>
              <td>Price</td>
              <td>Category</td>
-            <td>Delete</td>
+            <td>Action</td>
             <td> <a href="{{path('dish.create')}}">Create</a></td>
         </tr>
     </thead>
@@ -34,7 +34,7 @@
                 <td>{{dish.description}}</td>
                 <td>{{dish.price}}</td>
                 <td>{{dish.category}}</td>
-                <td> <a href="{{path('dish.remove', {id: dish.id})}}">x</a></td>
+                <td> <a href="{{path('dish.update', {id: dish.id})}}">Edit</a> |  <a href="{{path('dish.remove', {id: dish.id})}}">Delete</a></td>
                 <td></td>
             </tr>
         {% endfor %}

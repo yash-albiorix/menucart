@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
+    /**
      * @Route("/dish", name="dish.")
      */
 
@@ -72,7 +72,7 @@ class DishesController extends AbstractController
      */
     public function update(Request $request, $id): Response
     {
-        $dish = new Dish();
+        $dish = $this->getDoctrine()->getRepository(Dish::class)->find($id);
 
         $form = $this->createForm(DishType::class, $dish);
         $form->handleRequest($request);
