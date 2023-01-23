@@ -17,11 +17,11 @@
 			</div>
 			<div class="container">
 				<ul class="playlist-filter controls">
-					<li class="control" data-filter=".drink">drink</li>
-					<li class="control" data-filter=".appetiser">appetiser</li>
-					<li class="control" data-filter=".main_dishes">Main Dishes</li>
-					<li class="control" data-filter=".desserts">desserts</li>
 					<li class="control" data-filter="all">All Dishes</li>
+
+					{% for category in categories %}
+					<li class="control" data-filter=".{{category.name}}">{{category.name}}</li>
+					{% endfor %}
 				</ul>
 			</div>                                              
 			<div class="clearfix"></div>

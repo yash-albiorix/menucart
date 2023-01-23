@@ -66,6 +66,46 @@ class DishesController extends AbstractController
             'createForm' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/update/{id}", name="update")
+     */
+    public function update(Request $request, $id): Response
+    {
+        $dish = new Dish();
+
+        $form = $this->createForm(DishType::class, $dish);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()){
+            //Entity Manager 
+            $em = $this->getDoctrine()->getManager();
+
+            $image = $request->files->get('dish')['attachment'];
+
+            if($image){
+                $dateiname = md5(uniqid()) . '.' . $image->guessClientExtension();
+            }
+
+            $image->move(
+                $this->getParameter('images_folder'),
+                $dateiname
+            );
+
+            $dish->setImage($dateiname);
+
+            $em->persist($dish);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('dish.edit'));
+        }
+
+        //Response
+        return $this->render('dishes/create.html.twig', [
+            'createForm' => $form->createView()
+        ]);
+    }
+
     /**
      * @Route("/remove/{id}", name="remove")
      */

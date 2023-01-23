@@ -1813,3 +1813,7 @@ Responsive
 		margin-top: 20px;
 	}
 }
+
+ul.playlist-filter.controls > li {
+    text-transform: capitalize;
+}

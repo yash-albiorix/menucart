@@ -53,15 +53,15 @@
 		<ul class="main-menu">
 			<li><a href="{{ path('home') }}">Home</a></li>
 			<li><a href="{{ path('menu') }}">Menu</a></li>
-			<li><a href="{{ path('orders') }}">Orders</a></li>
 			<li><a href="{{ path('mail') }}">Waiter</a></li>
 			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+			<li><a href="{{ path('orders') }}">Orders</a></li>
 			<li><a href="#">Employee</a>
 				<ul class="sub-menu">
-					<li><a href="{{ path('dish.edit') }}">Edit</a></li>
+					<li><a href="{{ path('dish.edit') }}">Dishes</a></li>
 					<li><a href="{{ path('dish.create') }}">Create</a></li>
 					<li><a href="{{ path('orders') }}">Orders</a></li>
-					<li><a href="{{ path('reg') }}">Register</a></li>
+					<li><a href="{{ path('reg') }}">Create User</a></li>
 					<li><a href="{{ path('app_logout') }}">Logout</a></li>
 				</ul>
 			</li>
@@ -78,11 +78,11 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="section-title">
-						<h2>Unlimited Access to 100K tracks</h2>
+						<h2>All you can eat for 19.95 €</h2>
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+					<p>The restaurant offers the following concept for €19.95 per person: First of all, you can choose from many different salad variations, cold and warm starters at the starter buffet. Then the staff serves more than ten different meat variations, as long as you like. At the end, the dessert buffet with fresh and homemade delicacies awaits you.</p>
 					<a href="#" class="site-btn">Try it now</a>
 				</div>
 			</div>
@@ -132,9 +132,9 @@
 				</div>
 				<div class="col-xl-6 col-lg-5 order-lg-1">
 					<img src="{{asset('img/logo.png')}}" alt="">
-					<div class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> Downloaded from <a href="https://themeslab.org/" target="_blank">Themeslab</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+					<div class="copyright">
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.albiorixtech.com/" target="_blank">Albiorix</a> 
+</div>
 					<div class="social-links">
 						<a href=""><i class="fa fa-instagram"></i></a>
 						<a href=""><i class="fa fa-pinterest"></i></a>

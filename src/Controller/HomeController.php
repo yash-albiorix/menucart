@@ -21,6 +21,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'dish1' => $dishes[$random[0]],
             'dish2' => $dishes[$random[1]],
+            'dishes' => $dishes
         ]);
     }
 }
