@@ -8,20 +8,45 @@ use App\Repository\OrderRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Security\Core\Security;
 
 class OrderController extends AbstractController
 {
     /**
+    * @var Security
+    */
+    private $security;
+
+    public function __construct(Security $security)
+    {
+       $this->security = $security;
+    }
+
+    /**
      * @Route("/orders", name="orders")
      */
-    public function index(OrderRepository $or): Response
+    public function index(OrderRepository $or, SessionInterface $session): Response
     {
+        $user = $this->security->getUser();
 
-         $orders = $or->findBy(
-            ['_table' => 'table1']
-         );
+        if(!is_null($user)){
 
-        //  print_r($orders[0]); die;
+             $orders = $or->findAll();
+
+            //  $orders = $or->findBy(
+            //     ['status' => 'active']
+            //  );
+        }else{
+            $tableNo = $session->get('tableNo');
+            $tableNumber = 'table' . $tableNo;
+
+            $orders = $or->findBy(
+                ['_table' => $tableNumber]
+            );
+        }
+        
+
         return $this->render('order/index.html.twig', [
             'orders' => $orders,
         ]);
@@ -30,10 +55,14 @@ class OrderController extends AbstractController
     /**
      * @Route("/addorder/{id}", name="addorder")
      */
-    public function addOrder(Dish $dish){
+    public function addOrder(Dish $dish, SessionInterface $session){
 
         $order = new Order();
-        $order->setTable('table1');
+
+        $tableNo = $session->get('tableNo');
+        $tableNumber = 'table' . $tableNo;
+
+        $order->setTable($tableNumber);
         $order->setName($dish->getName());
         $order->setOrderNo($dish->getId());
         $order->setPrice($dish->getPrice());

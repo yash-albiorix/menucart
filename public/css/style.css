@@ -665,7 +665,7 @@ Playlist page
 	font-weight: 500;
 	color: #6a7080;
 	padding: 10px 6px 16px;
-	margin-right: 55px;
+	margin-right: 40px;
 	margin-bottom: 10px;
 	border-bottom: 2px solid transparent;
 	cursor: pointer;
@@ -1816,4 +1816,12 @@ Responsive
 
 ul.playlist-filter.controls > li {
     text-transform: capitalize;
+}
+.playlist-item > img {
+    height: 300px;
+}
+.selectTable {
+    color: #08192d !important;
+    margin-left: unset !important;
+	padding: 10px 10px !important;
 }

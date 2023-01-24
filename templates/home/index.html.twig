@@ -81,9 +81,9 @@
 						<img src="{{asset('images/' ~ dish.image)}}" alt="">
 						<h5>{{dish.name}} - INR {{dish.price}}</h5>
 						<p>{{dish.description}}</p>
-						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+						{# {% if is_granted('IS_AUTHENTICATED_FULLY') %} #}
                         <a class="btn btn-outline-danger btn-sm" href="{{ path('addorder', {id: dish.id}) }}" role="button">Order</a>
-						{% endif %}
+						{# {% endif %} #}
 					</div>
 				</div>
 				{% endfor %}

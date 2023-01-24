@@ -55,8 +55,9 @@
 			<li><a href="{{ path('home') }}">Home</a></li>
 			<li><a href="{{ path('menu') }}">Menu</a></li>
 			<li><a href="{{ path('mail') }}">Waiter</a></li>
-			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+			
 			<li><a href="{{ path('orders') }}">Orders</a></li>
+			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 			<li><a href="#">Employee</a>
 				<ul class="sub-menu">
 					<li><a href="{{ path('dish.edit') }}">Dishes</a></li>
@@ -66,6 +67,22 @@
 					<li><a href="{{ path('reg') }}">Create User</a></li>
 					<li><a href="{{ path('app_logout') }}">Logout</a></li>
 				</ul>
+			</li>
+			
+			{% endif %}
+			{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+			<li>
+			 <div class="dropdown">
+			 	<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Table {{ app.session.get('tableNo') }} </a>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+					{% for i in 1..8 %}
+    					<a class="selectTable" href="{{path('selectTable',{table: i})}}">Table {{i}}</a>
+					{% endfor %}
+						{# <a class="dropdown-item" href="{{path('status',{id: order.id, status:'active'})}}">Active</a> #}
+                                {# <a class="dropdown-item" href="{{path('status',{id: order.id, status:'inactive'})}}">Inactive</a> #}
+                            </div>
+                        </div>
 			</li>
 			{% endif %}
 		</ul>
