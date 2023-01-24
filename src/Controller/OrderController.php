@@ -31,12 +31,7 @@ class OrderController extends AbstractController
         $user = $this->security->getUser();
 
         if(!is_null($user)){
-
              $orders = $or->findAll();
-
-            //  $orders = $or->findBy(
-            //     ['status' => 'active']
-            //  );
         }else{
             $tableNo = $session->get('tableNo');
             $tableNumber = 'table' . $tableNo;
@@ -61,6 +56,12 @@ class OrderController extends AbstractController
 
         $tableNo = $session->get('tableNo');
         $tableNumber = 'table' . $tableNo;
+
+        if(is_null($tableNo)){
+            $tableNumber = 'table1';    
+            $session->set('tableNo', '1');
+        }
+
 
         $order->setTable($tableNumber);
         $order->setName($dish->getName());
